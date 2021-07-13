@@ -101,6 +101,9 @@ console = []
 WEBRTC = os.path.join('extension', 'webrtc_control.zip')
 FINGERPRINT = os.path.join('extension', 'fingerprint_defender.crx')
 TIMEZONE = os.path.join('extension', 'spoof_timezone.crx')
+AUTOSKIPPER = os.path.join('extension', 'yt_ad_autoskipper.crx')
+ONTOP = os.path.join('extension', 'always_active.zip')
+AUTO = os.path.join('extension', 'auto.crx')
 DATABASE = 'database.db'
 DATABASE_BACKUP = 'database_backup.db'
 
@@ -346,6 +349,9 @@ def get_driver(agent, proxy, proxy_type, pluginfile):
         options.add_extension(WEBRTC)
         options.add_extension(FINGERPRINT)
         options.add_extension(TIMEZONE)
+        options.add_extension(AUTOSKIPPER)
+        options.add_extension(ONTOP)
+        options.add_extension(AUTO)
 
     if auth_required:
         proxy = proxy.replace('@', ':')
@@ -452,7 +458,7 @@ def bypass_signin(driver):
 def skip_initial_ad(driver, position, video):
     try:
         video_len = duration_dict[video]
-        if video_len > 60:
+        if video_len > 10000:
             skip_ad = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(
                 (By.CLASS_NAME, "ytp-ad-skip-button-container")))
 
