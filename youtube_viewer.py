@@ -421,16 +421,41 @@ def get_driver(agent, proxy, proxy_type, pluginfile):
     return driver
 
 
+def personalization(driver):
+    search = driver.find_element_by_xpath(
+        f'//button[@aria-label="Turn {choice(["on","off"])} Search customization"]')
+    driver.execute_script("arguments[0].scrollIntoViewIfNeeded();", search)
+    search.click()
+
+    history = driver.find_element_by_xpath(
+        f'//button[@aria-label="Turn {choice(["on","off"])} YouTube History"]')
+    driver.execute_script("arguments[0].scrollIntoViewIfNeeded();", history)
+    history.click()
+
+    ad = driver.find_element_by_xpath(
+        f'//button[@aria-label="Turn {choice(["on","off"])} Ad personalization"]')
+    driver.execute_script("arguments[0].scrollIntoViewIfNeeded();", ad)
+    ad.click()
+
+    confirm = driver.find_element_by_xpath('//button[@jsname="j6LnYe"]')
+    driver.execute_script("arguments[0].scrollIntoViewIfNeeded();", confirm)
+    confirm.click()
+
+
 def bypass_consent(driver):
     try:
-        consent = WebDriverWait(driver, 15).until(EC.element_to_be_clickable(
-            (By.CSS_SELECTOR, "button.VfPpkd-LgbsSe.VfPpkd-LgbsSe-OWXEXe-k8QpJ.VfPpkd-LgbsSe-OWXEXe-dgl2Hf.nCP5yc.AjY5Oe.DuMIQc.IIdkle")))
+        consent = driver.find_element_by_xpath("//button[@jsname='higCR']")
         driver.execute_script("arguments[0].scrollIntoView();", consent)
         consent.click()
+        if 'consent' in driver.current_url:
+            personalization(driver)
     except:
-        consent = driver.find_element_by_xpath("//input[@type='submit' and @value='I agree']")
+        consent = driver.find_element_by_xpath(
+            "//input[@type='submit' and @value='I agree']")
         driver.execute_script("arguments[0].scrollIntoView();", consent)
         consent.submit()
+        if 'consent' in driver.current_url:
+            personalization(driver)
 
 
 def bypass_signin(driver):
