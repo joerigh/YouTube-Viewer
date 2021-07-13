@@ -29,7 +29,7 @@ https://github.com/MShawon/YouTube-Viewer
  
   Open command prompt and type
   ```bash
-  $ git clone https://github.com/MShawon/YouTube-Viewer.git
+  $ git clone https://github.com/joerigh/YouTube-Viewer.git
 
   $ cd YouTube-Viewer
 
