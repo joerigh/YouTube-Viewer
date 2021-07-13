@@ -24,3 +24,30 @@
 Simple program to increase YouTube views written in Python.
 https://github.com/MShawon/YouTube-Viewer
 
+  
+* ## Installation Windows
+ 
+  Open command prompt and type
+  ```bash
+  $ git clone https://github.com/MShawon/YouTube-Viewer.git
+
+  $ cd YouTube-Viewer
+
+  $ pip install -r requirements.txt
+  ```
+  If something goes wrong, try again after installing latest version pip.
+
+* ## Important
+   * If you've got a large proxy collection, you should run this command to filter Good proxies. Then use **GoodProxy.txt** for proxy in **youtube_viewer.py**
+      ```
+      $ python proxy_check.py
+      ```
+
+   * After closing program, if chromedrivers are still running. You may want to double click **killdrive.bat** to close all chrome instances.
+
+   * *urls.txt* or *search.txt* can't be empty. Otherwise you will see errors.
+
+* ## Usage
+   * Open command prompt in YouTube-Viewer folder and run
+        ```
+        $ python youtube_viewer.py
